@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: BankScamMessages
   m_EditorClassIdentifier: Assembly-CSharp::_Abdullah.MessageDatabase
   messages:
-  - sender: sadasd
-    subject: fasdsaf
-    content: dasdsadasdadjjhasjkdhajsdhjasjda
+  - sender: Jood
+    subject: Abdullah is crazy
+    content: Abdullah is crazy because of Reef
     isScam: 1
-    explanation: dasdsadsad
+    explanation: Reef is Queen
     messageType: 0
