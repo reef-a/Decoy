@@ -87,12 +87,12 @@ namespace _Abdullah
             
             if (isCorrect)
             {
-                feedbackText.text = "Correct!";
+                feedbackText.text = "!ﺢﻴﺤﺻ";
                 feedbackText.color = Color.green;
             }
             else
             {
-                feedbackText.text = "Incorrect!";
+                feedbackText.text = "!ﺄﻄﺧ";
                 feedbackText.color = Color.red;
             }
 
