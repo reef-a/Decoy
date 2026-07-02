@@ -12,13 +12,13 @@ namespace _Abdullah
         [Header("UI References")]
         [SerializeField] private GameObject emailPanel;
         [SerializeField] private TextMeshProUGUI senderText;
-        [SerializeField] private TextMeshProUGUI subjectText;
-        [SerializeField] private TextMeshProUGUI contentText;
+        [SerializeField] private TextMeshProArGUI subjectText;
+        [SerializeField] private TextMeshProArGUI contentText;
         [SerializeField] private Button scamButton;
         [SerializeField] private Button legitimateButton;
         [SerializeField] private Button nextButton;
         [SerializeField] private TextMeshProUGUI feedbackText;
-        [SerializeField] private TextMeshProUGUI explanationText;
+        [SerializeField] private TextMeshProArGUI explanationText;
 
         [Header("Data")]
         [SerializeField] private MessageDatabase messageDatabase;
@@ -70,7 +70,9 @@ namespace _Abdullah
             
             senderText.text = $"From: {currentMessage.sender}";
             subjectText.text = $"Subject: {currentMessage.subject}";
+            subjectText.ConvertToArabic();
             contentText.text = currentMessage.content;
+            contentText.ConvertToArabic();
             
             feedbackText.text = "";
             explanationText.text = "";
@@ -95,6 +97,7 @@ namespace _Abdullah
             }
 
             explanationText.text = currentMessage.explanation;
+            explanationText.ConvertToArabic();
             
             DisableDecisionButtons();
             nextButton.gameObject.SetActive(true);
