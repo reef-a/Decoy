@@ -69,7 +69,7 @@ namespace _Abdullah
             currentMessageIndex = index;
             
             senderText.text = $"From: {currentMessage.sender}";
-            subjectText.text = $"Subject: {currentMessage.subject}";
+            subjectText.text = $"{currentMessage.subject}";
             subjectText.ConvertToArabic();
             contentText.text = currentMessage.content;
             contentText.ConvertToArabic();
