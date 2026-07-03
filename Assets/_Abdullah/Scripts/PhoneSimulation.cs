@@ -24,6 +24,8 @@ namespace _Abdullah
         [Header("Data")]
         [SerializeField] private MessageDatabase messageDatabase;
 
+        [SerializeField] private ScoreEvent scoreEvent;
+
         private int currentMessageIndex = 0;
         private ScamMessageData currentMessage;
         private bool isCallActive = false;
@@ -46,7 +48,7 @@ namespace _Abdullah
             legitimateButton.onClick.AddListener(() => OnDecisionMade(false));
             nextButton.onClick.AddListener(LoadNextMessage);
             answerCallButton.onClick.AddListener(OnCallAnswered);
-            
+
             nextButton.gameObject.SetActive(false);
             answerCallButton.gameObject.SetActive(false);
         }
@@ -62,7 +64,7 @@ namespace _Abdullah
             }
 
             currentMessage = messageDatabase.messages[index];
-            
+
             // Only show SMS and Call messages
             if (currentMessage.messageType == MessageType.Email)
             {
@@ -71,10 +73,10 @@ namespace _Abdullah
             }
 
             currentMessageIndex = index;
-            
+
             senderText.text = currentMessage.sender;
             callStatusText.text = "";
-            
+
             if (currentMessage.messageType == MessageType.Call)
             {
                 messageText.text = "Incoming call...";
@@ -91,7 +93,7 @@ namespace _Abdullah
                 scamButton.gameObject.SetActive(true);
                 legitimateButton.gameObject.SetActive(true);
             }
-            
+
             feedbackText.text = "";
             explanationText.text = "";
             nextButton.gameObject.SetActive(false);
@@ -109,20 +111,21 @@ namespace _Abdullah
         private void OnDecisionMade(bool playerThinksScam)
         {
             bool isCorrect = playerThinksScam == currentMessage.isScam;
-            
+
             if (isCorrect)
             {
-                feedbackText.text = "Correct!";
+                feedbackText.text = "!ﺢﻴﺤﺻ";
                 feedbackText.color = Color.green;
+                scoreEvent.InvokeOnScoreIncrease();
             }
             else
             {
-                feedbackText.text = "Incorrect!";
+                feedbackText.text = "!ﺄﻄﺧ";
                 feedbackText.color = Color.red;
             }
 
             explanationText.text = currentMessage.explanation;
-            
+
             DisableDecisionButtons();
             nextButton.gameObject.SetActive(true);
         }

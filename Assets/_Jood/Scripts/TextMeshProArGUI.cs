@@ -20,7 +20,7 @@ public class TextMeshProArGUI : TextMeshProUGUI
     public void ConvertToArabic()
     {
 
-        text = ArabicFixer.Fix(text);
+        text = ArabicFixer.Fix(text, false, true);
 
 
         isRightToLeftText = true;

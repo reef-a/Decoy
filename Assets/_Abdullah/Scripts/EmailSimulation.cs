@@ -23,6 +23,8 @@ namespace _Abdullah
         [Header("Data")]
         [SerializeField] private MessageDatabase messageDatabase;
 
+        [SerializeField] private ScoreEvent scoreEvent;
+
         private int currentMessageIndex = 0;
         private ScamMessageData currentMessage;
 
@@ -58,7 +60,7 @@ namespace _Abdullah
             }
 
             currentMessage = messageDatabase.messages[index];
-            
+
             // Only show email messages
             if (currentMessage.messageType != MessageType.Email)
             {
@@ -67,16 +69,16 @@ namespace _Abdullah
             }
 
             currentMessageIndex = index;
-            
+
             senderText.text = $"From: {currentMessage.sender}";
             subjectText.text = $"{currentMessage.subject}";
             subjectText.ConvertToArabic();
             contentText.text = currentMessage.content;
             contentText.ConvertToArabic();
-            
+
             feedbackText.text = "";
             explanationText.text = "";
-            
+
             EnableDecisionButtons();
             nextButton.gameObject.SetActive(false);
         }
@@ -84,11 +86,12 @@ namespace _Abdullah
         private void OnDecisionMade(bool playerThinksScam)
         {
             bool isCorrect = playerThinksScam == currentMessage.isScam;
-            
+
             if (isCorrect)
             {
                 feedbackText.text = "!ﺢﻴﺤﺻ";
                 feedbackText.color = Color.green;
+                scoreEvent.InvokeOnScoreIncrease();
             }
             else
             {
@@ -98,7 +101,7 @@ namespace _Abdullah
 
             explanationText.text = currentMessage.explanation;
             explanationText.ConvertToArabic();
-            
+
             DisableDecisionButtons();
             nextButton.gameObject.SetActive(true);
         }
